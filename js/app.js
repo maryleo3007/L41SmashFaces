@@ -3,6 +3,7 @@ $(function() {
     var name="";
     var countTry = 1;
     var selectCode = "";
+    var points = 0;
     var sede, srcSede, imgrandom;
     $("#mySelect").on('change',function () {
       selectCode = $(this).val();
@@ -25,31 +26,47 @@ $(function() {
     $("#btnComprobar").on('click',function () {
       var input = $("#inputname");
       var role = 1;
-      var points = 0;
       countTry++;
+      imgrandom ++;
+      if (imgrandom == sede.length) {
+          imgrandom=1;
+      }
 
-      if(countTry <= 5){
-        if(input.val().toLowerCase() == name.toLowerCase()){
+      if(input.val().toLowerCase() == name.toLowerCase()){
             alert("Excelente, Acertaste");
             input.val("");
             points += 5;
             $('#showMessage').html('<strong>'+points+'</strong>') ;
             setTimeout(function () {
               $('#contentImage img').css({"display":"none"});
-              imgrandom = getRandomArbitrary(1,sede.length);
+
               getCoder(role,imgrandom,sede,srcSede);
             },2000);
         }else{
-            alert("Sigue intentando");
-            points--;
-        }
-      }else{
-          alert("hola");
-          $('#contentImage img').css({"display":"none"});
-          imgrandom = getRandomArbitrary(1,sede.length);
-          getCoder(role,imgrandom,sede,srcSede);
 
-      }
+          if(countTry <= 5){
+            if(input.val().toLowerCase() == name.toLowerCase()){
+                alert("Excelente, Acertaste");
+                input.val("");
+                points += 5;
+                $('#showMessage').html('<strong>'+points+'</strong>') ;
+                setTimeout(function () {
+                  $('#contentImage img').css({"display":"none"});
+
+                  getCoder(role,imgrandom,sede,srcSede);
+                },2000);
+            }else{
+                alert("Sigue intentando, tienes 5 portunidades!");
+            }
+          }else{
+              points--;
+              $('#showMessage').html('<strong>'+points+'</strong>') ;
+              $('#contentImage img').css({"display":"none"});
+              getCoder(role,imgrandom,sede,srcSede);
+          }
+
+        }
+
     });
 
 var getCoder = function (role,imgrandom,sede,srcSede) {

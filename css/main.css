@@ -4,13 +4,13 @@ body{
 }
 p,button{
 	font-family: 'Roboto', sans-serif;
-	
+
 }
 button{
 	background-color: #F9A91A;
 	border:#F9A91A;
 	padding: 7px 14px;
-	
+
 }
 .bg-gray{
 	background-color:gray;
@@ -23,4 +23,9 @@ button{
 	background: rgba(0, 0, 0, 0.3);
 	padding: 7px 14px;
 }
+hr{
+	border-top:5px solid #000;
+	width: 50px;
+	float: left;
 
+}
